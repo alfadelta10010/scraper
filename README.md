@@ -5,6 +5,6 @@ A Simple Selenium based program that works on scraping student data from PESU Ac
 ## Usage
 ```bash
   cd ec-scraper/
-  source scraperEnv/bin/activate
+  source scrapeEnv/bin/activate
   python3 scraper <rr or ec> <year>
 ```
