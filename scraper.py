@@ -53,8 +53,13 @@ for i in range(1, 4000):
         campus = browser.find_element(By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[9]").text
         name = browser.find_element(By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[3]").text
         strRow = prn + "," + srn + "," + semValue + "," + section + "," + cycle + "," + strCamp + "," + stream + "," + campus + "," + name
-        print("Got for", prn)
-        f.write(strRow + "\n")
+            if(stream!='CIE'): #diffrentiating between the cie and normal students
+                print("Got for", prn)
+                f.write(strRow + "\n")
+            elif(stream == 'CIE'):
+                print("CIE")
+                print("Got for", prn)
+                f.write(strRow + "\n")
     except:
         f1.write(inputPRN+"\n")
         print(inputPRN, "error")
