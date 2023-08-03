@@ -10,10 +10,6 @@ If you wish to contribute to the bot, follow these steps:
 
 **Under no circumstances is anyone allowed to merge to the main branch.**
 
-
-
 ## File Structure
-
-
 
 `scraper.py` - The scraper. That's it<br>
