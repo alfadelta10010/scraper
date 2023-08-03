@@ -45,26 +45,30 @@ for i in range(1, 4000):
 
         strCamp = browser.find_element(
             By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[7]").text
+
+        campus = browser.find_element(
+            By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[9]").text
+
+        section = browser.find_element(
+            By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[5]").text
         if ("CIE" in semValue):
             semValue = browser.find_element(
                 By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr[2]/td[4]").text
-
             strCamp = browser.find_element(
                 By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr[2]/td[7]").text
-
+            campus = browser.find_element(
+                By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr[2]/td[9]").text
+            section = browser.find_element(
+                By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr[2]/td[5]").text
         prn = browser.find_element(
             By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[1]").text
         srn = browser.find_element(
             By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[2]").text
         # semValue = browser.find_element(By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[4]").text
-        section = browser.find_element(
-            By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[5]").text
         cycle = browser.find_element(
             By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[6]").text
         stream = browser.find_element(
             By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[8]").text
-        campus = browser.find_element(
-            By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[9]").text
         name = browser.find_element(
             By.XPATH, "//*[@id='knowClsSectionModalTableDate']/tr/td[3]").text
         strRow = prn + "," + srn + "," + semValue + "," + section + "," + \
