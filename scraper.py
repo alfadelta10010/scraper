@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from time import sleep
 import csv
 import sys
+import mysql.connector
 
 c = sys.argv[1]
 yr = sys.argv[2]
@@ -22,6 +23,25 @@ fName = "batch_of_" + yr + ".csv"
 f = open(fName, "a")
 f1 = open("errors.txt", "a")
 print("Files created")
+
+
+database = mysql.connector.connect(
+    user='pes_people_bot',
+    password='super_secure_password',
+    host='localhost',
+    database='pes_people'
+)
+
+print("db connected")
+cursor = database.cursor()
+
+
+cursor.execute("show tables")
+show_tables_query = cursor.fetchall()
+classes_already_in_db = [table[0] for table in show_tables_query]
+print(classes_already_in_db)
+
+
 for i in range(1, 4000):
     if (i >= 1 and i <= 9):
         s = "000" + str(i)
@@ -74,12 +94,35 @@ for i in range(1, 4000):
         strRow = prn + "," + srn + "," + semValue + "," + section + "," + \
             cycle + "," + strCamp + "," + stream + "," + campus + "," + name
         print("Got for", prn)
+
         f.write(strRow + "\n")
-    except:
+
+        clas = (semValue+"_"+strCamp+"_"+section+"_"+cycle).replace(" ", "_")
+        clas = clas.replace("-", "_")
+        clas = clas.replace("(", "")
+        clas = clas.replace(")", "")
+        clas = clas.replace(".", "")
+        clas = clas.replace("&", "and")
+
+        if clas not in classes_already_in_db:
+            classes_already_in_db.append(clas)
+            query = f"create table {clas}(PRN varchar(32), SRN varchar(32), Name varchar(64))"
+            print(query)
+            cursor.execute(query)
+            print(f"created table {clas}")
+
+        query = f"insert into {clas} values ('{prn}', '{srn}', '{name}')"
+        print(query)
+        cursor.execute(query)
+        database.commit()
+
+    except Exception as e:
         f1.write(inputPRN+"\n")
-        print(inputPRN, "error")
+        print(inputPRN, "error", e)
 f.close()
 f1.close()
 print("File closed")
 browser.close()
 print("Browser closed")
+database.close()
+print("db closed")

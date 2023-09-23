@@ -1,0 +1,3 @@
+batch_of*.csv
+geckodriver.log
+errors.txt
