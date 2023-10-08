@@ -16,4 +16,4 @@ Seleniun, Python
 
 ## How it works
 
-The scraper goes to PESU Academy, uses the Know your section tool, and enters a PRN. Once done, it sends that, and copies details from the result table. Saves it to the CSV file.
+The scraper goes to PESU Academy, uses the `Know your section` tool, and enters a PRN. Once done, it sends that, and copies details from the result table. Saves it to a SQL Database.
